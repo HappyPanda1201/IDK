@@ -11,10 +11,10 @@ app.use(bodyParser.json());
 // Create the MySQL connection pool
 const pool = mysql.createPool ({
     connectionLimit: 10,
-    host: 'mysqltestproject-testprojectvol.a.aivencloud.com',
-    user: 'avnadmin',
-    password: 'AVNS_o_3za9TiyuNB9xOTHwk',
-    database: 'defaultdb'
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'testdb'
 });
 
 // Start a server
@@ -25,6 +25,7 @@ app.listen(port, () => {
 app.get('/users', (req, res) => {
     pool.query('SELECT * FROM tblusers', (error, results) => {
         if (error) {
+            throw error;
             console.error(error);
             res.status(500).send('Error retrieving users');
         } else {
