@@ -13,8 +13,8 @@ const pool = mysql.createPool ({
     connectionLimit: 10,
     host: 'localhost',
     user: 'root',
-    password: 'password',
-    database: 'my_database'
+    password: '',
+    database: 'testdb'
 });
 
 // Start a server
@@ -23,7 +23,7 @@ app.listen(port, () => {
 });
 
 app.get('/users', (req, res) => {
-    pool.query('SELECT * FROM users', (error, results) => {
+    pool.query('SELECT * FROM tblusers', (error, results) => {
         if (error) {
             console.error(error);
             res.status(500).send('Error retrieving users');
